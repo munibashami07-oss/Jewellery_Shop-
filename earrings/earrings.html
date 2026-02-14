@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earrings</title>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-size: 20px;
+}
+
+/* TOP BAR */
+.navbar1{
+    background:black;
+    color:red;
+    text-align:center;
+    padding:0.8rem;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{color:red;}
+    50%{color:white;}
+    100%{color:red;}
+}
+
+/* MAIN NAVBAR */
+.navbar2{
+    background:rgb(52,11,11);
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height: 8%;
+}
+
+/* SEARCH */
+#search{
+    width:250px;
+    padding:6px;
+    /* text-align:center; */
+    border-radius:5px;
+    border:2px solid transparent;
+    background-color: rgb(114, 68, 68);
+}
+#cart-count{
+    background:red;
+    color:white;
+    font-size:0.8rem;
+    padding:2px 6px;
+    border-radius:50%;
+    margin-left:4px;
+}
+a{
+    text-decoration: none;
+}
+/* LOGO CONTAINER */
+.heading{
+    width:100px;
+    height:100px;
+    display:block;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* margin-right: 37%; */
+     /* margin-left: 0%; */
+}
+
+.heading img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    background:transparent;
+    padding:6px;
+
+}
+.nav-left{
+    justify-self:start;
+}
+.home{
+    text-decoration: none;
+    color: white;
+    font-size:x-large;
+    padding-left: 5px;
+      padding-right: 5px;
+       padding-bottom: 1px;
+        padding-top: 1px;
+}
+.home:hover{
+    color: gold;
+    font-size:xx-large;
+}
+.body{
+    display: flex;
+}
+.sidebar{
+    text-align: center;
+    color: black;
+    padding: 2%;
+    overflow: auto;
+    width: 25%;
+    list-style: none;   
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+        border-right: solid 1px grey;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: rgba(170, 170, 170, 0.1);
+    color: rgb(254, 10, 217);
+    transform: translateX(-5px);
+}
+.necklaces{
+    width:100%;
+    background-color:white;
+    color:black;
+    text-align:center;   /* ⭐ THIS CENTERS TEXT */
+    padding-top:2rem;
+    min-height:80vh;   /* allows content to grow */
+float: left;
+
+
+}
+.necklaces1{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    padding:2rem;
+    flex-wrap: wrap;
+}
+
+.necklaces1_1,
+.necklaces2_1,
+.necklaces3_1,
+.necklaces4_1,
+.necklaces5_1,
+.necklaces6_1{
+    width:30%;       
+    height:420px;
+}
+
+.necklaces1_2,
+.necklaces2_2,
+.necklaces3_2,
+.necklaces4_2,
+.necklaces5_2,
+.necklaces6_2
+{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    /* height: 70vh; */
+}
+.necklaces1_3 {
+ background:url("../earrings/images/Golden_Bloom_Drops.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+ /* height: 70vh; */
+}
+.necklaces1_3:hover{
+     background:url("../earrings/images/Golden_Bloom_Drops_hover.png") center/cover no-repeat;
+     width: 100%;
+}
+.necklaces2_3 {
+ background:url("../earrings/images/Haloed_Baroque.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+}
+.necklaces2_3:hover{
+     background:url("../earrings/images/Haloed_Baroque_hover.png") center/cover no-repeat;
+     width: 100%;
+}
+.necklaces3_3 {
+ background:url("../earrings/images/Oceanic_Echo.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+}
+.necklaces3_3:hover{
+     background:url("../earrings/images/Oceanic_Echo_hover.png") center/cover no-repeat;
+     width: 100%;
+}
+.necklaces4_3 {
+ background:url("../earrings/images/Solstice_Pearl.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+}
+.necklaces4_3:hover{
+     background:url("../earrings/images/Solstice_Pearl_hover.png") center/cover no-repeat;
+     width: 100%;
+}
+.necklaces5_3 {
+ background:url("../earrings/images/petals.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+}
+.necklaces5_3:hover{
+     background:url("../earrings/images/petals_hover.png") center/cover no-repeat;
+     width: 100%;
+}.necklaces6_3 {
+ background:url("../earrings/images/white_rose.png") center/cover no-repeat;
+ width:100%;
+ border-radius: 5%;
+ transition: background , width 2s;
+}
+.necklaces6_3:hover{
+     background:url("../earrings/images/white_rose_hover.png") center/cover no-repeat;
+     width: 100%;
+}
+.necklaces1_3,
+.necklaces2_3,
+.necklaces3_3,
+.necklaces4_3,
+.necklaces5_3, 
+.necklaces6_3{
+    width:100%;
+          /* REQUIRED */
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.4s ease;
+     height:360px;
+}
+.necklaces1_1 h2 , .necklaces2_1 h2, .necklaces3_1 h2 , .necklaces4_1 h2,.necklaces5_1 h2 , .necklaces6_1 h2{
+    text-align: center;
+
+}
+
+.necklaces1_1 h3 , .necklaces2_1 h3, .necklaces3_1 h3 , .necklaces4_1 h3,.necklaces5_1 h3 , .necklaces6_1 h3{
+    text-align: center;
+}
+.necklaces1_1 h3 , .necklaces2_1 h3{
+    color: #ff0000;
+}
+.necklaces1_1 h4 , .necklaces2_1 h4{
+    color:rgb(52, 50, 50);
+}
+.necklaces1_1 h4 , .necklaces2_1 h4, .necklaces3_1 h4 , .necklaces4_1 h4{
+    text-align: center;
+}
+.filterdiv{
+display: inline-block;
+float: right;
+padding: 2px;
+font-size: x-large;
+}
+label{
+    font-size: x-large;
+}
+.filter option{
+padding:1px;
+font-family:'Times New Roman';
+border-radius: 2%;
+}
+select{
+    padding:1px;
+font-family:'Times New Roman';
+border-radius: 2%;
+}
+.cart-button{
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto; */
+    border-radius: 5%;
+    background-color: rgb(155, 107, 107);
+    color: white;
+    font-size: large;
+     transition: background , color 2s;
+     width: 100%;
+     height:7vh;
+     border-color:transparent ;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+.cart-button:hover{
+    background-color: rgb(244, 226, 226);
+    color:  rgb(110, 75, 75);
+      border-color: rgb(110, 75, 75);
+}
+/* FOOTER */
+.footer{
+    background: rgb(52,11,11);
+    color: white;
+    /* padding: 2rem 1rem; */
+    margin-top: 1rem;
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 1200px;
+    margin: auto;
+       text-align: center;
+         display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.footer a{
+      display: block;
+        margin-left: auto;
+        margin-right: auto;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    padding-left: 3%;
+}
+
+.footer a:hover{
+    color: rgb(255, 217, 0);
+}
+
+.footer-bottom{
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 1rem;
+    font-size: 0.9rem;
+}
+
+    </style>
+    <script src="earrings.js"></script>
+</head>
+<body>
+    <nav class="navbar1">
+    Free Home Delivery above Rs 999/- on all products
+</nav>
+
+<nav class="navbar2">
+      <div class="heading">
+        <img src="../homepage/logo.png" alt="Logo">
+    </div>
+
+     <div class="nav-left">
+        <a href="/Jewellery_shop/homepage/home.html" class="home">Home</a>
+    </div>
+
+      <div class="nav-left">
+        <a href="/Jewellery_shop/homepage/feedback.html" class="home">Feedback</a>
+    </div>
+
+    <div class="nav-left">
+        <a href="/Jewellery_shop/homepage/home.html#contact" class="home">Contact us</a>
+    </div>
+   <a href="/Jewellery_shop/homepage/cart.html">🛒<span id="cart-count">0</span></a>
+    <input type="search" name="search" id="search" placeholder="🔎︎     Search Here...">
+
+
+</nav>
+<div class="body">
+<aside class="sidebar">
+
+<h1 style="font-family:'Times New Roman', Times, serif;  font-size: x-large;">MUNI'S CLOSET</h1>
+<div class="menu" id="menu">
+    <ul>    <li><a href="../Earrings/earrings.html"  style="color:brown;">Earrings</a></li><br>
+        <li><a href="../necklaces/necklace_page.html" >Necklaces</a></li><br>
+        <li><a href="../Rings/rings.html">Rings</a></li><br>
+       
+          <li><a href="../Bracelets/bracelets.html">Bracelets</a></li><br>
+             <li><a href="/Jewellery_shop/homepage/home.html#policy">Our Policy</a></li><br>
+    </ul>
+</div>
+
+</aside>
+<div class="necklaces" id="necklaces">
+    
+    <div class="filterdiv">
+    <label for="filter" name="filter">Filter</label>
+  <select id="filter"class="filter" onchange="applyFilter()">
+    <option value="default">From old to new (Default)</option>
+    <option value="htol">Price high to low</option>
+    <option value="ltoh">Price low to high</option>
+    <option value="atoz">Alphabetical order (A to Z)</option>
+    <option value="ztoa">Alphabetical order (Z to A)</option>
+</select>
+ </div>
+    <br><br>
+    <p style="text-align: center;">Timeless pendants to elevate your look</p><br>
+    <h1 style="font-weight: bolder; font-size: xx-large;">Earrings </h1>
+<br><br>
+
+    <div class="necklaces1">
+        <div class="necklaces1_1" data-name="Golden Bloom Drops" data-price="799">
+            <a class="necklaces1_2" href="./product_review/Golden_Bloom_Drops.html">
+              <div class="necklaces1_3">
+<button class="cart-button" onclick="addToCart('Golden Bloom Drops', 799)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Golden Bloom Drops</h2>
+              <h3 style="color: black;">RS 799/-</h3>
+              <!-- <h4><del>RS 1100/-</del></h4> -->
+            </a>
+        </div>
+        <div class="necklaces2_1" data-name="Haloed Baroque" data-price="599">
+            <a class="necklaces2_2" href="./product_review/Haloed_Baroque.html">
+              <div class="necklaces2_3">
+<button class="cart-button" onclick="addToCart('Haloed Baroque', 599)">
+    Add to Cart
+</button>
+
+              </div>
+              <h2>Haloed Baroque</h2>
+              <h3 style="color: black;">RS 599/-</h3>
+              <!-- <h4><del>RS 499/-</del></h4> -->
+            </a>
+        </div>
+        <div class="necklaces3_1"data-name="Oceanic Echo" data-price="499">
+            <a class="necklaces3_2" href="./product_review/Oceanic_Echo.html">
+              <div class="necklaces3_3">
+<button class="cart-button" onclick="addToCart('Oceanic Echo', 499)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Oceanic Echo</h2>
+              <h3 style="color: #ff0000;">RS 499/-</h3>
+              <h4><del>RS 799/-</del></h4>
+            </a>
+        </div>
+        <div class="necklaces4_1" data-name="Solstice Pearl"data-price="999">
+            <a class="necklaces4_2" href="./product_review/Solstice_Pearl.html">
+              <div class="necklaces4_3">
+<button class="cart-button" onclick="addToCart('Solstice Pearl', 999)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Solstice Pearl</h2>
+              <h3 style="color: #ff0000;">RS 999/-</h3>
+              <h4><del>RS 1100/-</del></h4>
+            </a>
+        </div>
+            <div class="necklaces5_1" data-name="petals" data-price="799">
+            <a class="necklaces5_2" href="./product_review/petals.html">
+              <div class="necklaces5_3">
+<button class="cart-button" onclick="addToCart('Petals', 799)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Petals</h2>
+              <h3>RS 799/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+        <div class="necklaces6_1" data-name="White Rose" data-price="1199">
+            <a class="necklaces6_2" href="./product_review/white_rose.html">
+              <div class="necklaces6_3">
+<button class="cart-button" onclick="addToCart('White Rose', 1199)">
+    Add to Cart
+</button>
+              </div>
+              <h2>White Rose</h2>
+              <h3>RS 1199/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+    </div></div></div>
+<footer class="footer">
+    <div class="footer-container">
+
+
+        <div>
+
+            <a href="earrings.html" style="color:rgb(255, 183, 183); font-size:xx-large;">1</a>
+            <a href="#">2</a>
+       
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 MUNI'S CLOSET • All Rights Reserved
+    </div>
+</footer>
+
+    <script>
+function applyFilter() {
+    const filter = document.getElementById("filter").value;
+    const container = document.querySelector(".necklaces1");
+    const items = Array.from(container.children);
+
+    let sortedItems = [...items];
+
+    if (filter === "htol") {
+        sortedItems.sort((a, b) => b.dataset.price - a.dataset.price);
+    }
+
+    if (filter === "ltoh") {
+        sortedItems.sort((a, b) => a.dataset.price - b.dataset.price);
+    }
+
+    if (filter === "atoz") {
+        sortedItems.sort((a, b) =>
+            a.dataset.name.localeCompare(b.dataset.name)
+        );
+    }
+
+    if (filter === "ztoa") {
+        sortedItems.sort((a, b) =>
+            b.dataset.name.localeCompare(a.dataset.name)
+        );
+    }
+
+    // Re-append sorted items
+    container.innerHTML = "";
+    sortedItems.forEach(item => container.appendChild(item));
+}
+
+
+
+    </script>
+</body>
+
+
+</html>

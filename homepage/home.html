@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jewellery_store</title>
+
+<style>
+    *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-size: 20px;
+}
+
+/* TOP BAR */
+.navbar1{
+    background:black;
+    color:red;
+    text-align:center;
+    padding:0.8rem;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    0%{color:red;}
+    50%{color:white;}
+    100%{color:red;}
+}
+.admin{
+    width: 30vh;
+    height:10vh;
+    margin-left:0%;
+    border: solid 2px white;
+    color:white;
+    padding:3px;
+    text-align: center;
+    background-color: transparent;
+    transition: all 1s ease;
+}
+.admin:hover{
+    background-color: white;
+    color:black;
+    transform: scale(1.1);
+    box-shadow: 0 10px 18px rgba(255, 255, 255, 0.5);
+}
+
+/* MAIN NAVBAR */
+.navbar2{
+    background:rgb(52,11,11);
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* SEARCH */
+#search{
+    width:250px;
+    padding:6px;
+    border-radius:5px;
+    border:2px solid transparent;
+    background-color: rgb(114, 68, 68);
+}
+
+/* LOGO CONTAINER */
+.heading{
+    width:120px;
+    height:120px;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heading img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    background:transparent;
+    padding:6px;
+}
+
+/* HAMBURGER */
+.hamburger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    /*z-index:1000;*/
+}
+
+.hamburger span{
+    width:28px;
+    height:3px;
+    background:white;
+    transition:0.3s;
+}
+
+.hamburger.active span:nth-child(1){
+    transform:rotate(45deg) translate(6px,6px);
+    background:rgb(255, 255, 255);
+}
+.hamburger.active span:nth-child(2){
+    opacity:0;
+}
+.hamburger.active span:nth-child(3){
+    transform:rotate(-45deg) translate(6px,-6px);
+    background:rgb(255, 255, 255);
+}
+
+/* MENU */
+.menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:300px;
+    height:100vh;
+    background-color: black;
+    padding:5rem 2rem;
+    transition:0.4s;
+    z-index:999;
+    overflow: scroll;
+}
+
+.menu.active{
+    right:0;
+}
+
+.menu ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:1.5rem;
+}
+
+.menu ul li a{
+    text-decoration:none;
+    color:rgb(255, 255, 255);
+    font-size:1.2rem;
+    opacity:0;
+    transform:translateX(20px);
+}
+
+.menu.active ul li a{
+    animation:slideIn 0.4s forwards;
+}
+
+.menu.active ul li:nth-child(1) a{animation-delay:0.1s;}
+.menu.active ul li:nth-child(2) a{animation-delay:0.2s;}
+.menu.active ul li:nth-child(3) a{animation-delay:0.3s;}
+.menu.active ul li:nth-child(4) a{animation-delay:0.4s;}
+
+@keyframes slideIn{
+    to{opacity:1; transform:translateX(0);}
+}
+.menu.active ul li a:hover{
+    color: #ff2e2e;
+    font-size: xx-large;
+    opacity:0.5;
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(255, 255, 255, 0.5);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:998;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* HOME */
+.home{
+    height:80vh;
+    background:url("homepage.png") center/cover no-repeat;
+}
+.home1_1{
+    width:40%;
+    height:60%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.home1_2{
+    width:50vh;
+    height:50vh;
+    margin-left: 22%;
+    margin-top: 20%;
+    object-fit:cover;
+    border-radius:50%;
+    padding:6px;
+    animation: logo infinite 3s linear;
+}
+@keyframes logo{
+    0%{
+        margin-top: 20%;
+    }
+    50%{
+        margin-top: 17%;
+    }
+    100%{
+        margin-top: 20%;
+    }
+}
+
+/* POPUP BACKGROUND */
+.email-popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* POPUP BOX */
+.popup-box {
+    background: white;
+    padding: 2rem;
+    width: 320px;
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    animation: popIn 0.4s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.popup-box h2 {
+    margin-bottom: 0.5rem;
+}
+
+.popup-box p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.popup-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.popup-box button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #ac12bd;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.popup-box button:hover {
+    background: #8f0fa1;
+}
+
+.add_to_cart a{
+    color:white;
+    text-decoration:none;
+    font-size:1.5rem;
+    position:relative;
+}
+
+#cart-count{
+    background:red;
+    color:white;
+    font-size:0.8rem;
+    padding:2px 6px;
+    border-radius:50%;
+    margin-left:4px;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* ========== PRODUCT SECTIONS - RESPONSIVE ========== */
+
+/* Common styles for all product sections */
+.necklaces,
+.earrings,
+.rings,
+.bracelets{
+    width:100%;
+    background-color:white;
+    color:black;
+    text-align:center;
+    padding:2rem 1rem;
+    min-height:auto;
+}
+
+/* Product grid container */
+.necklaces1,
+.earrings1,
+.rings1,
+.bracelets1{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:2rem;
+    padding:2rem 1rem;
+    max-width:1400px;
+    margin:0 auto;
+}
+
+/* Individual product cards */
+.necklaces1_1, .necklaces2_1, .necklaces3_1, .necklaces4_1,
+.earrings1_1, .earrings2_1, .earrings3_1, .earrings4_1,
+.rings1_1, .rings2_1, .rings3_1, .rings4_1,
+.bracelets1_1, .bracelets2_1, .bracelets3_1, .bracelets4_1{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Product links */
+.necklaces1_2, .necklaces2_2, .necklaces3_2, .necklaces4_2,
+.earrings1_2, .earrings2_2, .earrings3_2, .earrings4_2,
+.rings1_2, .rings2_2, .rings3_2, .rings4_2,
+.bracelets1_2, .bracelets2_2, .bracelets3_2, .bracelets4_2{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+    width:100%;
+}
+
+/* Product image containers - IMPROVED RESPONSIVE SIZING */
+.necklaces1_3, .necklaces2_3, .necklaces3_3, .necklaces4_3,
+.earrings1_3, .earrings2_3, .earrings3_3, .earrings4_3,
+.rings1_3, .rings2_3, .rings3_3, .rings4_3,
+.bracelets1_3, .bracelets2_3, .bracelets3_3, .bracelets4_3{
+    width:100%;
+    aspect-ratio:3/4; /* Maintains consistent ratio */
+    border-radius:12px;
+    background-size:cover;
+    background-position:center;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    position:relative;
+    overflow:hidden;
+    min-height:300px;
+    max-height:400px;
+}
+
+/* Hover effects */
+.necklaces1_3:hover, .necklaces2_3:hover, .necklaces3_3:hover, .necklaces4_3:hover,
+.earrings1_3:hover, .earrings2_3:hover, .earrings3_3:hover, .earrings4_3:hover,
+.rings1_3:hover, .rings2_3:hover, .rings3_3:hover, .rings4_3:hover,
+.bracelets1_3:hover, .bracelets2_3:hover, .bracelets3_3:hover, .bracelets4_3:hover{
+    transform:scale(1.02);
+    box-shadow:0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* Necklace backgrounds */
+.necklaces1_3 {background-image:url("../necklaces/images/Sirens_Bounty.png");}
+.necklaces1_3:hover{background-image:url("../necklaces/images/Sirens_Bounty_hover.png");}
+
+.necklaces2_3 {background-image:url("../necklaces/images/Golden_Hour_Stack.png");}
+.necklaces2_3:hover{background-image:url("../necklaces/images/Golden_Hour_Stack_hover.png");}
+
+.necklaces3_3 {background-image:url("../necklaces/images/Adore_Duo_Necklace.png");}
+.necklaces3_3:hover{background-image:url("../necklaces/images/Adore_Duo_Necklace_hover.png");}
+
+.necklaces4_3 {background-image:url("../necklaces/images/Helios_Sun_Coin_Necklace.png");}
+.necklaces4_3:hover{background-image:url("../necklaces/images/Helios_Sun_Coin_Necklace_hover.png");}
+
+/* Earring backgrounds */
+.earrings1_3 {background-image:url("../earrings/images/Solstice_Pearl.png");}
+.earrings1_3:hover{background-image:url("../earrings/images/Solstice_Pearl_hover.png");}
+
+.earrings2_3 {background-image:url("../earrings/images/Oceanic_Echo.png");}
+.earrings2_3:hover{background-image:url("../earrings/images/Oceanic_Echo_hover.png");}
+
+.earrings3_3 {background-image:url("../earrings/images/Haloed_Baroque.png");}
+.earrings3_3:hover{background-image:url("../earrings/images/Haloed_Baroque_hover.png");}
+
+.earrings4_3 {background-image:url("../earrings/images/Golden_Bloom_Drops.png");}
+.earrings4_3:hover{background-image:url("../earrings/images/Golden_Bloom_Drops_hover.png");}
+
+/* Ring backgrounds */
+.rings1_3 {background-image:url("../rings/images/pearl_ring.png");}
+.rings1_3:hover{background-image:url("../rings/images/pearl_ring_hover.png");}
+
+.rings2_3 {background-image:url("../rings/images/peony_signet_ring.png");}
+.rings2_3:hover{background-image:url("../rings/images/peony_signet_ring_hover.png");}
+
+.rings3_3 {background-image:url("../rings/images/star_ring.png");}
+.rings3_3:hover{background-image:url("../rings/images/star_ring_hover.png");}
+
+.rings4_3 {background-image:url("../rings/images/vintage_brass_labradorite.png");}
+.rings4_3:hover{background-image:url("../rings/images/vintage_brass_labradorite_hover.png");}
+
+/* Bracelet backgrounds */
+.bracelets1_3 {background-image:url("../bracelets/images/nodstorm.png");}
+.bracelets1_3:hover{background-image:url("../bracelets/images/nodstorm_hover.png");}
+
+.bracelets2_3 {background-image:url("../bracelets/images/pearl_bangle.png");}
+.bracelets2_3:hover{background-image:url("../bracelets/images/pearl_bangle_hover.png");}
+
+.bracelets3_3 {background-image:url("../bracelets/images/stormy.png");}
+.bracelets3_3:hover{background-image:url("../bracelets/images/stormy_hover.png");}
+
+.bracelets4_3 {background-image:url("../bracelets/images/teauna.png");}
+.bracelets4_3:hover{background-image:url("../bracelets/images/teauna_hover.png");}
+
+/* Product titles and prices */
+.necklaces1_1 h2, .necklaces2_1 h2, .necklaces3_1 h2, .necklaces4_1 h2,
+.earrings1_1 h2, .earrings2_1 h2, .earrings3_1 h2, .earrings4_1 h2,
+.rings1_1 h2, .rings2_1 h2, .rings3_1 h2, .rings4_1 h2,
+.bracelets1_1 h2, .bracelets2_1 h2, .bracelets3_1 h2, .bracelets4_1 h2{
+    text-align:center;
+    margin-top:1rem;
+    font-size:1.1rem;
+}
+
+.necklaces1_1 h3, .necklaces2_1 h3, .necklaces3_1 h3, .necklaces4_1 h3,
+.earrings1_1 h3, .earrings2_1 h3, .earrings3_1 h3, .earrings4_1 h3,
+.rings1_1 h3, .rings2_1 h3, .rings3_1 h3, .rings4_1 h3,
+.bracelets1_1 h3, .bracelets2_1 h3, .bracelets3_1 h3, .bracelets4_1 h3{
+    text-align:center;
+    margin-top:0.5rem;
+    font-size:1rem;
+    font-weight:bold;
+}
+
+.necklaces1_1 h3, .necklaces2_1 h3,
+.earrings1_1 h3, .earrings2_1 h3,
+.rings2_1 h3,
+.bracelets1_1 h3{
+    color:#ff0000;
+}
+
+.necklaces1_1 h4, .necklaces2_1 h4,
+.earrings1_1 h4, .earrings2_1 h4,
+.rings1_1 h4, .rings2_1 h4, .rings3_1 h4, .rings4_1 h4,
+.bracelets1_1 h4, .bracelets2_1 h4, .bracelets3_1 h4, .bracelets4_1 h4{
+    text-align:center;
+    color:rgb(52, 50, 50);
+    font-size:0.9rem;
+    margin-top:0.25rem;
+}
+
+/* Cart button styling */
+.cart-button{
+    border-radius:8px;
+    background-color:rgb(155, 107, 107);
+    color:white;
+    font-size:1rem;
+    transition:all 0.3s ease;
+    width:100%;
+    height:50px;
+    border:none;
+    cursor:pointer;
+    position:absolute;
+    bottom:0;
+    left:0;
+    opacity:0;
+    transform:translateY(100%);
+}
+
+.cart-button:hover{
+    background-color:rgb(244, 226, 226);
+    color:rgb(110, 75, 75);
+}
+
+/* Show cart button on hover */
+.necklaces1_3:hover .cart-button,
+.necklaces2_3:hover .cart-button,
+.necklaces3_3:hover .cart-button,
+.necklaces4_3:hover .cart-button,
+.earrings1_3:hover .cart-button,
+.earrings2_3:hover .cart-button,
+.earrings3_3:hover .cart-button,
+.earrings4_3:hover .cart-button,
+.rings1_3:hover .cart-button,
+.rings2_3:hover .cart-button,
+.rings3_3:hover .cart-button,
+.rings4_3:hover .cart-button,
+.bracelets1_3:hover .cart-button,
+.bracelets2_3:hover .cart-button,
+.bracelets3_3:hover .cart-button,
+.bracelets4_3:hover .cart-button{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* View All Button */
+.button{
+    display:block;
+    margin:2rem auto;
+    border-radius:8px;
+    background-color:rgb(110, 75, 75);
+    color:white;
+    font-size:1.1rem;
+    transition:all 0.3s ease;
+    width:200px;
+    height:50px;
+    border:2px solid rgb(110, 75, 75);
+    cursor:pointer;
+}
+
+.button:hover{
+    background-color:white;
+    color:rgb(110, 75, 75);
+}
+
+/* About Us Section */
+.aboutus{
+    margin-top:3%;
+    width:100%;
+    display:block;
+}
+
+.aboutus1{
+    background:rgb(52,11,11);
+    padding:2rem;
+    display:block;
+    font-size:clamp(2rem, 5vw, 4rem);
+    color:aliceblue;
+    text-align:center;
+}
+
+.aboutus2{
+    min-height:80vh;
+    background:url("homepage.png") center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:2rem;
+}
+
+.aboutus2_1{
+    width:90%;
+    max-width:900px;
+    background-color:rgba(105, 56, 56, 0.4);
+    padding:2rem;
+    font-size:clamp(1rem, 2vw, 1.25rem);
+    color:#ffffff;
+    border-radius:12px;
+    line-height:1.8;
+}
+
+.aboutus2_1:hover{
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+}
+
+/* Policy Section */
+.policy{
+    max-width:900px;
+    margin:5rem auto;
+    padding:3rem;
+    background:#ffffff;
+    border-radius:16px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.08);
+    font-family:'Poppins', sans-serif;
+    line-height:1.8;
+}
+
+.policy h1{
+    margin-bottom:2rem;
+    font-size:2.2rem;
+}
+
+.policy b{
+    display:block;
+    margin-top:1.5rem;
+    font-size:1.2rem;
+}
+
+.policy ul{
+    margin-top:1rem;
+    padding-left:1.2rem;
+}
+
+.policy ul li{
+    margin-bottom:0.6rem;
+}
+
+.email-popup{
+    display:none;
+}
+
+/* Footer */
+.footer{
+    background:#000;
+    color:#fff;
+    padding:3rem 2rem 1rem;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:2rem;
+    max-width:1200px;
+    margin:auto;
+}
+
+.footer-section{
+    flex:1;
+    min-width:220px;
+}
+
+.footer-section h2,
+.footer-section h3{
+    margin-bottom:1rem;
+    color:#ffffff;
+}
+
+.footer-section p,
+.footer-section a{
+    font-size:0.95rem;
+    color:#ddd;
+    text-decoration:none;
+    line-height:1.6;
+}
+
+.footer-section a:hover{
+    color:#ff2e2e;
+}
+
+.footer-section img{
+    width:26px;
+    vertical-align:middle;
+    margin-right:6px;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:2rem;
+    padding-top:1rem;
+    border-top:1px solid #333;
+    font-size:0.85rem;
+    color:#aaa;
+}
+
+/* ========== RESPONSIVE BREAKPOINTS ========== */
+
+/* Tablets and smaller laptops */
+@media(max-width:1024px){
+    .necklaces1, .earrings1, .rings1, .bracelets1{
+        grid-template-columns:repeat(2, 1fr);
+        gap:1.5rem;
+        padding:1.5rem 1rem;
+    }
+    
+    .necklaces1_3, .necklaces2_3, .necklaces3_3, .necklaces4_3,
+    .earrings1_3, .earrings2_3, .earrings3_3, .earrings4_3,
+    .rings1_3, .rings2_3, .rings3_3, .rings4_3,
+    .bracelets1_3, .bracelets2_3, .bracelets3_3, .bracelets4_3{
+        min-height:280px;
+        max-height:350px;
+    }
+}
+
+/* Mobile landscape and small tablets */
+@media(max-width:800px){
+    .heading{
+        width:65px;
+        height:65px;
+    }
+    
+    #search{
+        width:140px;
+    }
+    
+    .necklaces1, .earrings1, .rings1, .bracelets1{
+        grid-template-columns:repeat(2, 1fr);
+        gap:1rem;
+        padding:1rem 0.5rem;
+    }
+    
+    .necklaces1_3, .necklaces2_3, .necklaces3_3, .necklaces4_3,
+    .earrings1_3, .earrings2_3, .earrings3_3, .earrings4_3,
+    .rings1_3, .rings2_3, .rings3_3, .rings4_3,
+    .bracelets1_3, .bracelets2_3, .bracelets3_3, .bracelets4_3{
+        min-height:220px;
+        max-height:280px;
+    }
+    
+    .necklaces1_1 h2, .necklaces2_1 h2, .necklaces3_1 h2, .necklaces4_1 h2,
+    .earrings1_1 h2, .earrings2_1 h2, .earrings3_1 h2, .earrings4_1 h2,
+    .rings1_1 h2, .rings2_1 h2, .rings3_1 h2, .rings4_1 h2,
+    .bracelets1_1 h2, .bracelets2_1 h2, .bracelets3_1 h2, .bracelets4_1 h2{
+        font-size:0.95rem;
+    }
+    
+    .home1_2{
+        width:35vh;
+        height:35vh;
+    }
+    
+    .aboutus2_1{
+        width:95%;
+        padding:1.5rem;
+    }
+    
+    .policy{
+        margin:3rem 1rem;
+        padding:2rem;
+    }
+}
+
+/* Mobile portrait */
+@media(max-width:600px){
+    *{
+        font-size:18px;
+    }
+    
+    .navbar2{
+        padding:0.8rem 1rem;
+    }
+    
+    .necklaces, .earrings, .rings, .bracelets{
+        padding:1.5rem 0.5rem;
+    }
+    
+    .necklaces1, .earrings1, .rings1, .bracelets1{
+        grid-template-columns:1fr;
+        gap:1.5rem;
+        padding:1rem 1rem;
+    }
+    
+    .necklaces1_3, .necklaces2_3, .necklaces3_3, .necklaces4_3,
+    .earrings1_3, .earrings2_3, .earrings3_3, .earrings4_3,
+    .rings1_3, .rings2_3, .rings3_3, .rings4_3,
+    .bracelets1_3, .bracelets2_3, .bracelets3_3, .bracelets4_3{
+        min-height:350px;
+        max-height:450px;
+    }
+    
+    .necklaces1_1 h2, .necklaces2_1 h2, .necklaces3_1 h2, .necklaces4_1 h2,
+    .earrings1_1 h2, .earrings2_1 h2, .earrings3_1 h2, .earrings4_1 h2,
+    .rings1_1 h2, .rings2_1 h2, .rings3_1 h2, .rings4_1 h2,
+    .bracelets1_1 h2, .bracelets2_1 h2, .bracelets3_1 h2, .bracelets4_1 h2{
+        font-size:1.1rem;
+    }
+    
+    .home{
+        height:60vh;
+    }
+    
+    .home1_2{
+        width:30vh;
+        height:30vh;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    
+    .footer-container{
+        flex-direction:column;
+        text-align:center;
+    }
+    
+    .button{
+        width:160px;
+        font-size:1rem;
+    }
+    
+    .cart-button{
+        font-size:0.9rem;
+        height:45px;
+    }
+    
+    /* Make cart button always visible on mobile */
+    .cart-button{
+        opacity:1;
+        transform:translateY(0);
+        position:relative;
+        margin-top:1rem;
+    }
+}
+
+/* Very small phones */
+@media(max-width:400px){
+    .necklaces1_3, .necklaces2_3, .necklaces3_3, .necklaces4_3,
+    .earrings1_3, .earrings2_3, .earrings3_3, .earrings4_3,
+    .rings1_3, .rings2_3, .rings3_3, .rings4_3,
+    .bracelets1_3, .bracelets2_3, .bracelets3_3, .bracelets4_3{
+        min-height:300px;
+        max-height:400px;
+    }
+    
+    .popup-box{
+        width:90%;
+        padding:1.5rem;
+    }
+}
+</style>
+<script>
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("keyup", function () {
+    const filter = searchInput.value.toLowerCase();
+
+    // select all product cards
+    const products = document.querySelectorAll(
+        ".necklaces1_1, .earrings1_1, .rings1_1, .bracelets1_1"
+    );
+
+    products.forEach(product => {
+        const title = product.querySelector("h2").innerText.toLowerCase();
+
+        if (title.includes(filter)) {
+            product.style.display = "block";
+        } else {
+            product.style.display = "none";
+        }
+    });
+});
+</script>
+
+</head>
+
+<body>
+
+<nav class="navbar1">
+    Free Home Delivery above Rs 999/- on all products
+</nav>
+
+<nav class="navbar2">
+      <input type="button" onclick='window.location.href="../adminpage/login.html"' value="Login" class="admin">
+    <div class="heading">
+        <img src="logo.png" alt="Logo">
+    </div>
+<div class="add_to_cart">
+    <a href="cart.html">🛒<span id="cart-count">0</span>&nbsp;&nbsp;</a>
+</div>
+
+    <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+<div class="overlay" id="overlay"></div>
+
+<div class="menu" id="menu">
+    <ul>
+        <li><a href="home.html">Home</a></li><br>
+        <li><a href="../necklaces/necklace_page.html">Necklaces</a></li><br>
+        <li><a href="../Earrings/earrings.html">Earrings</a></li><br>
+        <li><a href="../Rings/rings.html">Rings</a></li><br>
+          <li><a href="../Bracelets/bracelets.html">Bracelets</a></li><br>
+             <li><a href="#policy">Our Policy</a></li><br>
+                <li><a href="#contact">Contact us</a></li>
+    </ul>
+</div>
+<section class="home" id="home">
+<div class="home1_1">
+    <!-- classes defined by the parent class -->
+        <img src="logo.png" alt="Logo" class="home1_2">
+    </div>
+</section>
+<!-- EMAIL POPUP -->
+  <div class="email-popup" id="emailPopup">
+    <div class="popup-box">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <h2>Enter your email to receive unlimited offers</h2>
+
+        <form id="emailForm">
+            <input type="email" id="userEmail" name="email" placeholder="Enter your email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+<div class="necklaces" id="necklaces">
+    <!-- <p>Timeless pendants to elevate your look</p> -->
+    <h1 style="font-size: 25px;">Elegant  Necklace</h1>
+    <div class="necklaces1">
+        <div class="necklaces1_1">
+            <a class="necklaces1_2" href="../necklaces/product_review/Sirens_Bounty.html">
+              <div class="necklaces1_3">
+            <button class="cart-button" onclick="addToCart('The Siren’s Bounty', 900)">
+    Add to Cart
+</button>
+              </div>
+              <h2>The Siren’s Bounty</h2>
+              <h3>Rs 900/-</h3>
+              <h4><del>RS 1100/-</del></h4>
+              <!-- <button class="cart-button" onclick="addToCart('The Siren’s Bounty', 900)">
+    Add to Cart
+</button> -->
+
+            </a>
+        </div>
+        <div class="necklaces2_1">
+            <a class="necklaces2_2" href="../necklaces/product_review/Golden_hour_stack.html">
+              <div class="necklaces2_3">
+<button class="cart-button" onclick="addToCart('Golden Hour Stack', 1299)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Golden Hour Stack</h2>
+              <h3>Rs 1299/-</h3>
+              <h4><del>RS 1499/-</del></h4>
+            </a>
+        </div>
+        <div class="necklaces3_1">
+            <a class="necklaces3_2" href="../necklaces/product_review/Adore_duo_necklace.html">
+              <div class="necklaces3_3">
+<button class="cart-button" onclick="addToCart('Adore Duo Necklace', 1099)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Adore Duo Necklace</h2>
+              <h3>Rs 1099/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+        <div class="necklaces4_1">
+            <a class="necklaces4_2" href="../necklaces/product_review/Helios_Sun_Coin_Necklace.html">
+              <div class="necklaces4_3">
+<button class="cart-button" onclick="addToCart('Helios Sun Coin Necklace', 1199)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Helios Sun Coin Necklace</h2>
+              <h3>Rs 1199/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+    </div>
+    <input type="button" onclick='window.location.href="../necklaces/necklace_page.html"' value="View All" class="button">
+</div>
+<div class="earrings" id="earrings">
+    <!-- <p>Timeless elegance, designed to complement every look.</p> -->
+    <h1 style="font-size: 25px;">Elegant  Earrings</h1>
+    <div class="earrings1">
+        <div class="earrings1_1">
+            <a class="earrings1_2" href="../earrings/product_review/Solstice_Pearl.html">
+              <div class="earrings1_3">
+<button class="cart-button" onclick="addToCart('Solstice Pearl', 999)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Solstice Pearl</h2>
+              <h3>Rs 999/-</h3>
+              <h4><del>Rs 1199/-</del></h4>
+            </a>
+        </div>
+        <div class="earrings2_1">
+            <a class="earrings2_2" href="../earrings/product_review/Oceanic_Echo.html">
+              <div class="earrings2_3">
+<button class="cart-button" onclick="addToCart('Oceanic Echo', 499)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Oceanic Echo</h2>
+              <h3>Rs 499/-</h3>
+              <h4><del>Rs 799/-</del></h4>
+            </a>
+        </div>
+        <div class="earrings3_1">
+            <a class="earrings3_2" href="../earrings/product_review/Haloed_Baroque.html">
+              <div class="earrings3_3">
+<button class="cart-button" onclick="addToCart('Haloed Baroque', 599)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Haloed Baroque</h2>
+              <h3>Rs 599/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+        <div class="earrings4_1">
+            <a class="earrings4_2" href="../earrings/product_review/Golden_Bloom_Drops.html">
+              <div class="earrings4_3">
+<button class="cart-button" onclick="addToCart('Golden Bloom Drops', 799)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Golden Bloom Drops</h2>
+              <h3>Rs 799/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+    </div>
+    <input type="button" onclick='window.location.href="../earrings/earrings.html"' value="View All" class="button">
+</div>
+<div class="rings" id="rings">
+    <!-- <p>Refined, timeless rings crafted to make every moment feel special.</p> -->
+    <h1 style="font-size: 25px;">Elegant  Rings</h1>
+    <div class="rings1">
+        <div class="rings1_1">
+            <a class="rings1_2" href="../rings/product_review/Pearl_Ring.html">
+              <div class="rings1_3">
+<button class="cart-button" onclick="addToCart('Pearl Ring', 999)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Pearl Ring</h2>
+              <h3 style="color: black;">Rs 999/-</h3>
+              <!-- <h4><del>RS 1100/-</del></h4> -->
+            </a>
+        </div>
+        <div class="rings2_1">
+            <a class="rings2_2" href="../rings/product_review/Peony_Signet_Ring.html">
+              <div class="rings2_3">
+<button class="cart-button" onclick="addToCart('Peony Signet Ring', 299)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Peony Signet Ring</h2>
+              <h3>Rs 299/-</h3>
+              <h4><del>Rs 499/-</del></h4>
+            </a>
+        </div>
+        <div class="rings3_1">
+            <a class="rings3_2" href="../rings/product_review/Star_Ring.html">
+              <div class="rings3_3">
+<button class="cart-button" onclick="addToCart('Star Ring', 250)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Star Ring</h2>
+              <h3>Rs 250/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+        <div class="rings4_1">
+            <a class="rings4_2" href="../rings/product_review/Vintage_brass_labradorite.html">
+              <div class="rings4_3">
+<button class="cart-button" onclick="addToCart('Vintage brass labradorite', 599)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Vintage brass labradorite</h2>
+              <h3>Rs 599/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+    </div>
+    <input type="button" onclick='window.location.href="../rings/rings.html"' value="View All" class="button">
+</div>
+<div class="bracelets" id="bracelets">
+    <!-- <p>Elegance that adds the perfect finishing touch to your wrist
+</p> -->
+    <h1 style="font-size: 25px;">Elegant  Bracelets</h1>
+    <div class="bracelets1">
+        <div class="bracelets1_1">
+            <a class="bracelets1_2" href="../bracelets/product_review/nodstorm.html">
+              <div class="bracelets1_3">
+<button class="cart-button" onclick="addToCart('Nodstorm', 1099)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Nodstorm</h2>
+              <h3>Rs 1099/-</h3>
+              <h4><del>Rs 1400/-</del></h4>
+            </a>
+        </div>
+        <div class="bracelets2_1">
+            <a class="bracelets2_2" href="../bracelets/product_review/pearl_bangle.html">
+              <div class="bracelets2_3">
+<button class="cart-button" onclick="addToCart('Pearl bangle', 999)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Pearl bangle</h2>
+              <h3 style="color: black;">Rs 999/-</h3>
+              <!-- <h4><del>RS 800/-</del></h4> -->
+            </a>
+        </div>
+        <div class="bracelets3_1">
+            <a class="bracelets3_2" href="../bracelets/product_review/stormy.html">
+              <div class="bracelets3_3">
+<button class="cart-button" onclick="addToCart('Stormy', 799)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Stormy</h2>
+              <h3>Rs 799/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+        <div class="bracelets4_1">
+            <a class="bracelets4_2" href="../bracelets/product_review/teauna.html">
+              <div class="bracelets4_3">
+<button class="cart-button" onclick="addToCart('Teauna', 799)">
+    Add to Cart
+</button>
+              </div>
+              <h2>Teauna</h2>
+              <h3>Rs 799/-</h3>
+              <!-- <h4><del>RS 1500/-</del></h4> -->
+            </a>
+        </div>
+    </div>
+    <input type="button" onclick='window.location.href="../bracelets/bracelets.html"' value="View All" class="button">
+</div>
+
+<div class="aboutus">
+    <div class="aboutus1">
+        ABOUT US
+    </div>
+    <div class="aboutus2">
+     <div class="aboutus2_1">
+       Muni's closet is dedicated to crafting elegant necklaces and timeless pendants that elevate everyday style. Each piece is thoughtfully designed with attention to detail, quality, and lasting beauty, ensuring jewelry that feels both refined and meaningful. Our collections blend modern sophistication with classic charm, making them perfect for special occasions or daily wear. With a commitment to excellence and customer satisfaction, we aim to offer jewellery that inspires confidence, celebrates individuality, and adds a touch of elegance .
+     </div>
+    </div>
+</div>
+
+<div class="policy" id="policy">
+    <h1>Our Policy</h1>
+
+    <b>Returns</b>
+    <p>
+        Tesoro has a strict no-return policy on all products, except in the case of a manufacturing defect.
+        All items are inspected prior to dispatch.
+    </p>
+
+    <b>Exchange</b>
+    <ul>
+        <li>Exchange allowed within 3 days of purchase</li>
+        <li>Item must be unused and in original packing</li>
+        <li>Tags and original receipt required</li>
+        <li>Exchange for equal value only</li>
+        <li>Each purchase can be exchanged once</li>
+        <li>Sale items are non-exchangeable</li>
+    </ul>
+</div>
+<footer class="footer" id="contact">
+    <div class="footer-container">
+
+        <div class="footer-section">
+            <h2>Muni's Closet</h2>
+            <p>Elegant jewelry crafted to elevate your everyday style.</p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>📞 <a href="tel:+923308258256">+92 330 8258256</a></p>
+            <p>📧 <a href="mailto:muniscloset@gmail.com">muniscloset@gmail.com</a></p>
+            <p>
+                <a href="https://wa.me/923308258256" target="_blank">
+                    <img src="../logos/whatsapp.png" alt="WhatsApp"> WhatsApp
+                </a>
+            </p>
+        </div>
+
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="#necklaces">Necklaces</a><br>
+            <a href="#earrings">Earrings</a><br>
+            <a href="#rings">Rings</a><br>
+            <a href="#bracelets">Bracelets</a><br>
+               <a href="feedback.html">Feedback</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Muni's Closet | All Rights Reserved
+    </div>
+</footer>
+
+<script>
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+const overlay = document.getElementById("overlay");
+
+hamburger.addEventListener("click",()=>{
+    hamburger.classList.toggle("active");
+    menu.classList.toggle("active");
+    overlay.classList.toggle("active");
+});
+
+overlay.addEventListener("click",()=>{
+    hamburger.classList.remove("active");
+    menu.classList.remove("active");
+    overlay.classList.remove("active");
+});
+
+const emailPopup = document.getElementById("emailPopup");
+const closePopup = document.getElementById("closePopup");
+const emailForm = document.getElementById("emailForm");
+
+/* show popup */
+setTimeout(() => {
+    emailPopup.style.display = "flex";
+}, 1500);
+
+
+/* close popup */
+closePopup.addEventListener("click", () => {
+    emailPopup.style.display = "none";
+});
+
+/* handle form submit */
+emailForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("storing_email.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+        if (data.trim() === "success") {
+            this.reset();
+            emailPopup.style.display = "none";
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    })
+    .catch(() => {
+        alert("Server error!");
+    });
+});
+
+function addToCart(name, price){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    // alert(name + " added to cart!");
+}
+
+function updateCartCount(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").innerText = cart.length;
+}
+
+/* update count on page load */
+updateCartCount();
+
+</script>
+
+</body>
+</html>

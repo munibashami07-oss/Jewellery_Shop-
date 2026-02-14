@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Your Cart</title>
+
+<style>
+body{
+    padding:2rem;
+    font-family: Arial, sans-serif;
+}
+
+h1,h2{
+    text-align:center;
+}
+
+.cart-header,
+.cart-row{
+    display:grid;
+    grid-template-columns: 40px 1fr 100px 100px;
+    align-items:center;
+    gap:10px;
+    padding:1rem 0;
+    border-bottom:1px solid #ddd;
+}
+
+.cart-header{
+    font-weight:bold;
+}
+
+.summary{
+    max-width:400px;
+    margin:2rem auto;
+    border-top:2px solid #000;
+    padding-top:1rem;
+}
+
+.summary div{
+    display:flex;
+    justify-content:space-between;
+    margin:0.5rem 0;
+}
+
+.btn{
+    width:30vh;
+    height:9vh;
+    margin:2rem auto;
+    display:block;
+    background:white;
+    color:black;
+    border-radius:8px;
+    border:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.22);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:black;
+    color:#ddd;
+    transform:translateY(-5px);
+}
+</style>
+</head>
+
+<body>
+<form action="checkout.html" method="post">
+<h1>Your Cart (<span id="item-count">0</span> items)</h1>
+
+<div class="cart-header">
+    <span></span>
+    <span>Product</span>
+    <span>Quantity</span>
+    <span>Price</span>
+</div>
+
+<div id="cart-items"></div>
+
+<div class="summary">
+    <div><span>Subtotal</span><span id="subtotal">Rs 0</span></div>
+    <div><span>Shipping</span><span id="shipping">Rs 0</span></div>
+    <div><strong>Total</strong><strong id="total">Rs 0</strong></div>
+</div>
+
+<!-- <button class="btn" onclick="history.back()">Go Back</button> -->
+<button type="submit"  class="btn" id="checkout">Buy it now!</button>
+</form>
+<script>
+let rawCart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartContainer = document.getElementById("cart-items");
+
+/* GROUP ITEMS */
+let cart = {};
+rawCart.forEach(item=>{
+    if(cart[item.name]){
+        cart[item.name].qty++;
+    }else{
+        cart[item.name] = {
+            price: item.price,
+            qty: 1,
+            checked: true
+        };
+    }
+});
+
+/* RENDER CART */
+function renderCart(){
+    cartContainer.innerHTML = "";
+    let subtotal = 0;
+    let itemCount = 0;
+
+    Object.keys(cart).forEach(name=>{
+        let item = cart[name];
+        if(item.checked){
+            subtotal += item.price * item.qty;
+        }
+
+        itemCount++;
+
+        cartContainer.innerHTML += `
+            <div class="cart-row">
+                <input type="checkbox" checked onchange="toggleItem('${name}')">
+                <span>${name}</span>
+                <span>${item.qty}</span>
+                <span>Rs ${item.price * item.qty}</span>
+            </div>
+        `;
+    });
+
+    document.getElementById("item-count").innerText = itemCount;
+    document.getElementById("subtotal").innerText = "Rs " + subtotal;
+
+    let shipping = subtotal < 999 && subtotal > 0 ? 300 : 0;
+    document.getElementById("shipping").innerText = "Rs " + shipping;
+    document.getElementById("total").innerText = "Rs " + (subtotal + shipping);
+}
+
+/* REMOVE ITEM WHEN UNCHECKED */
+function toggleItem(name){
+    delete cart[name];
+
+    let newStorage = [];
+    Object.keys(cart).forEach(key=>{
+        for(let i=0;i<cart[key].qty;i++){
+            newStorage.push({name:key, price:cart[key].price});
+        }
+    });
+
+    localStorage.setItem("cart", JSON.stringify(newStorage));
+    renderCart();
+}
+
+renderCart();
+
+</script>
+
+</body>
+</html>

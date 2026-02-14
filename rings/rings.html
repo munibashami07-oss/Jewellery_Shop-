@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rings</title>
+    <style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-size: 20px;
+}
+
+/* TOP BAR */
+.navbar1{
+    background:black;
+    color:red;
+    text-align:center;
+    padding:0.8rem;
+    animation: blink 1s infinite;
+    font-size: 16px;
+}
+
+@keyframes blink{
+    0%{color:red;}
+    50%{color:white;}
+    100%{color:red;}
+}
+
+/* MAIN NAVBAR */
+.navbar2{
+    background:rgb(52,11,11);
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height: 80px;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* SEARCH */
+#search{
+    width:250px;
+    padding:6px;
+    border-radius:5px;
+    border:2px solid transparent;
+    background-color: rgb(114, 68, 68);
+}
+
+#cart-count{
+    background:red;
+    color:white;
+    font-size:0.8rem;
+    padding:2px 6px;
+    border-radius:50%;
+    margin-left:4px;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* LOGO CONTAINER */
+.heading{
+    width:100px;
+    height:100px;
+    order: 2;
+}
+
+.heading img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    background:transparent;
+    padding:6px;
+}
+
+.nav-left{
+    display: flex;
+    gap: 1rem;
+    order: 1;
+    flex: 1;
+}
+
+.nav-right{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    order: 3;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.home{
+    text-decoration: none;
+    color: white;
+    font-size:x-large;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.home:hover{
+    color: gold;
+    font-size:xx-large;
+}
+
+.body{
+    display: flex;
+}
+
+.sidebar{
+    text-align: center;
+    color: black;
+    padding: 2%;
+    overflow: auto;
+    width: 25%;
+    list-style: none;   
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-right: solid 1px grey;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: rgba(170, 170, 170, 0.1);
+    color: rgb(254, 10, 217);
+    transform: translateX(-5px);
+}
+
+.necklaces{
+    width:75%;
+    background-color:white;
+    color:black;
+    text-align:center;
+    padding-top:2rem;
+    min-height:80vh;
+}
+
+.necklaces1{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    padding:2rem;
+    flex-wrap: wrap;
+}
+
+.necklaces1_1,
+.necklaces2_1,
+.necklaces3_1,
+.necklaces4_1,
+.necklaces5_1,
+.necklaces6_1{
+    width:calc(33.333% - 1.5rem);
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.necklaces1_2,
+.necklaces2_2,
+.necklaces3_2,
+.necklaces4_2,
+.necklaces5_2,
+.necklaces6_2{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}
+
+.necklaces1_3 {
+    background:url("../rings/images/star_ring.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces1_3:hover{
+    background:url("../rings/images/star_ring_hover.png") center/cover no-repeat;
+}
+
+.necklaces2_3 {
+    background:url("../rings/images/peony_signet_ring.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces2_3:hover{
+    background:url("../rings/images/peony_signet_ring_hover.png") center/cover no-repeat;
+}
+
+.necklaces3_3 {
+    background:url("../rings/images/vintage_brass_labradorite.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces3_3:hover{
+    background:url("../rings/images/vintage_brass_labradorite_hover.png") center/cover no-repeat;
+}
+
+.necklaces4_3 {
+    background:url("../rings/images/pearl_ring.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces4_3:hover{
+    background:url("../rings/images/pearl_ring_hover.png") center/cover no-repeat;
+}
+
+.necklaces5_3 {
+    background:url("../rings/images/salari_ring.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces5_3:hover{
+    background:url("../rings/images/salari_ring_hover.png") center/cover no-repeat;
+}
+
+.necklaces6_3 {
+    background:url("../rings/images/violeta.png") center/cover no-repeat;
+    width:100%;
+    border-radius: 5%;
+    transition: background 0.4s ease;
+}
+
+.necklaces6_3:hover{
+    background:url("../rings/images/violeta_hover.png") center/cover no-repeat;
+}
+
+.necklaces1_3,
+.necklaces2_3,
+.necklaces3_3,
+.necklaces4_3,
+.necklaces5_3, 
+.necklaces6_3{
+    width:100%;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.4s ease;
+    height:360px;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+}
+
+.necklaces1_1 h2, .necklaces2_1 h2, .necklaces3_1 h2, .necklaces4_1 h2, .necklaces5_1 h2, .necklaces6_1 h2{
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.necklaces1_1 h3, .necklaces2_1 h3, .necklaces3_1 h3, .necklaces4_1 h3, .necklaces5_1 h3, .necklaces6_1 h3{
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.necklaces1_1 h3, .necklaces2_1 h3{
+    color: #ff0000;
+}
+
+.necklaces1_1 h4, .necklaces2_1 h4{
+    color:rgb(52, 50, 50);
+}
+
+.necklaces1_1 h4, .necklaces2_1 h4, .necklaces3_1 h4, .necklaces4_1 h4{
+    text-align: center;
+    font-size: 1rem;
+}
+
+.filterdiv{
+    display: inline-block;
+    float: right;
+    padding: 2px;
+    font-size: x-large;
+    margin-right: 2rem;
+}
+
+label{
+    font-size: x-large;
+}
+
+.filter option{
+    padding:1px;
+    font-family:'Times New Roman';
+    border-radius: 2%;
+}
+
+select{
+    padding:1px;
+    font-family:'Times New Roman';
+    border-radius: 2%;
+}
+
+.cart-button{
+    border-radius: 5%;
+    background-color: rgb(155, 107, 107);
+    color: white;
+    font-size: large;
+    transition: background 0.3s, color 0.3s;
+    width: 100%;
+    height: 50px;
+    border-color:transparent;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.cart-button:hover{
+    background-color: rgb(244, 226, 226);
+    color: rgb(110, 75, 75);
+    border-color: rgb(110, 75, 75);
+}
+
+/* FOOTER */
+.footer{
+    background: rgb(52,11,11);
+    color: white;
+    margin-top: 1rem;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.footer-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer a{
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    padding-left: 3%;
+}
+
+.footer a:hover{
+    color: rgb(255, 217, 0);
+}
+
+.footer-bottom{
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* MOBILE MENU TOGGLE */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    order: 1;
+}
+
+/* RESPONSIVE STYLES */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .necklaces1_1,
+    .necklaces2_1,
+    .necklaces3_1,
+    .necklaces4_1,
+    .necklaces5_1,
+    .necklaces6_1{
+        width:calc(50% - 1rem);
+    }
+    
+    .sidebar{
+        width: 30%;
+    }
+    
+    .necklaces{
+        width: 70%;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    * {
+        font-size: 18px;
+    }
+    
+    .navbar1 {
+        font-size: 14px;
+        padding: 0.6rem;
+    }
+    
+    .navbar2 {
+        padding: 1rem;
+        justify-content: center;
+        position: relative;
+    }
+    
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .heading {
+        width: 80px;
+        height: 80px;
+        order: 2;
+        margin: 0 auto;
+    }
+    
+    .nav-left {
+        order: 3;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        display: none;
+    }
+    
+    .nav-left.active {
+        display: flex;
+    }
+    
+    .nav-right {
+        order: 4;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .home {
+        font-size: large;
+    }
+    
+    .home:hover {
+        font-size: large;
+    }
+    
+    #search {
+        width: 200px;
+    }
+    
+    .body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: solid 1px grey;
+        padding: 1rem;
+    }
+    
+    .sidebar h1 {
+        font-size: large !important;
+    }
+    
+    .sidebar a {
+        padding: 0.8rem;
+        font-size: 16px;
+    }
+    
+    .necklaces {
+        width: 100%;
+        padding-top: 1rem;
+    }
+    
+    .necklaces h1 {
+        font-size: x-large !important;
+    }
+    
+    .filterdiv {
+        float: none;
+        display: block;
+        text-align: center;
+        margin: 1rem auto;
+        font-size: large;
+    }
+    
+    label {
+        font-size: large;
+    }
+    
+    .necklaces1 {
+        gap: 1.5rem;
+        padding: 1.5rem 1rem;
+    }
+    
+    .necklaces1_1,
+    .necklaces2_1,
+    .necklaces3_1,
+    .necklaces4_1,
+    .necklaces5_1,
+    .necklaces6_1 {
+        width: 100%;
+        max-width: 100%;
+        min-width: auto;
+    }
+    
+    .necklaces1_3,
+    .necklaces2_3,
+    .necklaces3_3,
+    .necklaces4_3,
+    .necklaces5_3, 
+    .necklaces6_3 {
+        height: 300px;
+    }
+    
+    .cart-button {
+        font-size: medium;
+        height: 45px;
+    }
+    
+    .footer {
+        padding: 1.5rem 1rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.8rem;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    * {
+        font-size: 16px;
+    }
+    
+    .navbar1 {
+        font-size: 12px;
+        padding: 0.5rem;
+    }
+    
+    .heading {
+        width: 70px;
+        height: 70px;
+    }
+    
+    #search {
+        width: 160px;
+        font-size: 14px;
+    }
+    
+    .necklaces1 {
+        padding: 1rem 0.5rem;
+        gap: 1rem;
+    }
+    
+    .necklaces1_3,
+    .necklaces2_3,
+    .necklaces3_3,
+    .necklaces4_3,
+    .necklaces5_3, 
+    .necklaces6_3 {
+        height: 250px;
+    }
+    
+    .necklaces1_1 h2, .necklaces2_1 h2, .necklaces3_1 h2, .necklaces4_1 h2, .necklaces5_1 h2, .necklaces6_1 h2 {
+        font-size: 1rem;
+    }
+    
+    .necklaces1_1 h3, .necklaces2_1 h3, .necklaces3_1 h3, .necklaces4_1 h3, .necklaces5_1 h3, .necklaces6_1 h3 {
+        font-size: 0.95rem;
+    }
+    
+    .cart-button {
+        font-size: small;
+        height: 40px;
+        padding: 8px 16px;
+    }
+}
+
+    </style>
+    <script src="rings.js"></script>
+</head>
+<body>
+    <nav class="navbar1">
+        Free Home Delivery above Rs 999/- on all products
+    </nav>
+
+    <nav class="navbar2">
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        
+        <div class="heading">
+            <img src="../homepage/logo.png" alt="Logo">
+        </div>
+
+        <div class="nav-left" id="navMenu">
+            <a href="/Jewellery_shop/homepage/home.html" class="home">Home</a>
+            <a href="/Jewellery_shop/homepage/feedback.html" class="home">Feedback</a>
+            <a href="/Jewellery_shop/homepage/home.html#contact" class="home">Contact us</a>
+        </div>
+
+        <div class="nav-right">
+            <a href="/Jewellery_shop/homepage/cart.html">🛒<span id="cart-count">0</span></a>
+            <input type="search" name="search" id="search" placeholder="🔎︎ Search Here...">
+        </div>
+    </nav>
+
+    <div class="body">
+        <aside class="sidebar">
+            <h1 style="font-family:'Times New Roman', Times, serif; font-size: x-large;">MUNI'S CLOSET</h1>
+            <div class="menu" id="menu">
+                <ul>
+                    <li><a href="../Rings/rings.html" style="color:brown;">Rings</a></li><br>
+                    <li><a href="../necklaces/necklace_page.html">Necklaces</a></li><br>
+                    <li><a href="../Earrings/earrings.html">Earrings</a></li><br>
+                    <li><a href="../Bracelets/bracelets.html">Bracelets</a></li><br>
+                    <li><a href="/Jewellery_shop/homepage/home.html#policy">Our Policy</a></li><br>
+                </ul>
+            </div>
+        </aside>
+
+        <div class="necklaces" id="necklaces">
+            <div class="filterdiv">
+                <label for="filter" name="filter">Filter</label>
+                <select id="filter" class="filter" onchange="applyFilter()">
+                    <option value="default">From old to new (Default)</option>
+                    <option value="htol">Price high to low</option>
+                    <option value="ltoh">Price low to high</option>
+                    <option value="atoz">Alphabetical order (A to Z)</option>
+                    <option value="ztoa">Alphabetical order (Z to A)</option>
+                </select>
+            </div>
+            <br><br>
+            <p style="text-align: center;">Timeless pendants to elevate your look</p><br>
+            <h1 style="font-weight: bolder; font-size: xx-large;">Rings</h1>
+            <br><br>
+
+            <div class="necklaces1">
+                <div class="necklaces1_1" data-name="Star Ring" data-price="250">
+                    <a class="necklaces1_2" href="./product_review/Star_Ring.html">
+                        <div class="necklaces1_3">
+                            <button class="cart-button" onclick="addToCart('Star Ring', 250)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Star Ring</h2>
+                        <h3 style="color: black;">RS 250/-</h3>
+                    </a>
+                </div>
+
+                <div class="necklaces2_1" data-name="Peony Signet Ring" data-price="299">
+                    <a class="necklaces2_2" href="./product_review/Peony_Signet_Ring.html">
+                        <div class="necklaces2_3">
+                            <button class="cart-button" onclick="addToCart('Peony Signet Ring', 299)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Peony Signet Ring</h2>
+                        <h3>RS 299/-</h3>
+                        <h4><del>RS 499/-</del></h4>
+                    </a>
+                </div>
+
+                <div class="necklaces3_1" data-name="Vintage brass labradorite" data-price="599">
+                    <a class="necklaces3_2" href="./product_review/Vintage_brass_labradorite.html">
+                        <div class="necklaces3_3">
+                            <button class="cart-button" onclick="addToCart('Vintage brass labradorite', 599)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Vintage brass labradorite</h2>
+                        <h3>RS 599/-</h3>
+                    </a>
+                </div>
+
+                <div class="necklaces4_1" data-name="Pearl Ring" data-price="999">
+                    <a class="necklaces4_2" href="./product_review/Pearl_Ring.html">
+                        <div class="necklaces4_3">
+                            <button class="cart-button" onclick="addToCart('Pearl Ring', 999)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Pearl Ring</h2>
+                        <h3>RS 999/-</h3>
+                    </a>
+                </div>
+
+                <div class="necklaces5_1" data-name="salari_ring" data-price="799">
+                    <a class="necklaces5_2" href="./product_review/salari_ring.html">
+                        <div class="necklaces5_3">
+                            <button class="cart-button" onclick="addToCart('salari_ring', 799)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Salari Ring</h2>
+                        <h3>RS 799/-</h3>
+                    </a>
+                </div>
+
+                <div class="necklaces6_1" data-name="violeta" data-price="1499">
+                    <a class="necklaces6_2" href="./product_review/violeta.html">
+                        <div class="necklaces6_3">
+                            <button class="cart-button" onclick="addToCart('violeta', 1499)">
+                                Add to Cart
+                            </button>
+                        </div>
+                        <h2>Violeta</h2>
+                        <h3>RS 1499/-</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <a href="rings.html" style="color:rgb(255, 183, 183); font-size:xx-large;">1</a>
+                <a href="#">2</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 MUNI'S CLOSET • All Rights Reserved
+        </div>
+    </footer>
+
+    <script>
+        function applyFilter() {
+            const filter = document.getElementById("filter").value;
+            const container = document.querySelector(".necklaces1");
+            const items = Array.from(container.children);
+
+            let sortedItems = [...items];
+
+            if (filter === "htol") {
+                sortedItems.sort((a, b) => b.dataset.price - a.dataset.price);
+            }
+
+            if (filter === "ltoh") {
+                sortedItems.sort((a, b) => a.dataset.price - b.dataset.price);
+            }
+
+            if (filter === "atoz") {
+                sortedItems.sort((a, b) =>
+                    a.dataset.name.localeCompare(b.dataset.name)
+                );
+            }
+
+            if (filter === "ztoa") {
+                sortedItems.sort((a, b) =>
+                    b.dataset.name.localeCompare(a.dataset.name)
+                );
+            }
+
+            container.innerHTML = "";
+            sortedItems.forEach(item => container.appendChild(item));
+        }
+
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function addToCart(name, price) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({name: name, price: price});
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            updateCartCount();
+            alert(name + ' added to cart!');
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        window.onload = function() {
+            updateCartCount();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Cart</title>
+<?php if(isset($_GET['success'])): ?>
+<div class="msg" style="display: block; background-color: #000; color: #ccc; margin-left: auto;
+margin-right:auto; width: 40%; height: 40%; text-align: center;">
+
+
+<h1 class="success"></h1>
+</div>
+<?php endif; ?>
+<style>
+body{
+    padding:2rem;
+    font-family: Arial, sans-serif;
+}
+
+h1,h2{
+    text-align:center;
+}
+
+.cart-header,
+.cart-row{
+    display:grid;
+    grid-template-columns: 40px 1fr 100px 100px;
+    align-items:center;
+    gap:10px;
+    padding:1rem 0;
+    border-bottom:1px solid #ddd;
+}
+
+.cart-header{
+    font-weight:bold;
+}
+
+.summary{
+    max-width:400px;
+    margin:2rem auto;
+    border-top:2px solid #000;
+    padding-top:1rem;
+}
+
+.summary div{
+    display:flex;
+    justify-content:space-between;
+    margin:0.5rem 0;
+}
+
+.btn{
+    width:30vh;
+    height:9vh;
+    margin:2rem auto;
+    display:block;
+    background:white;
+    color:black;
+    border-radius:8px;
+    border:none;
+    box-shadow:0 10px 30px rgba(0,0,0,0.22);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:black;
+    color:#ddd;
+    transform:translateY(-5px);
+}
+
+form{
+    width:80%;
+    margin:auto;
+    padding:2rem;
+    border-radius:10px;
+    border:2px solid rgba(0,0,0,0.6);
+    box-shadow:0 5px 15px rgba(0,0,0,0.6);
+    text-align:center;
+}
+
+label{
+    font-size:18px;
+    font-weight:300;
+}
+
+input, select, textarea{
+    width:60%;
+    padding:1rem;
+    margin:0.7rem auto;
+    display:block;
+    border-radius:12px;
+    border:2px solid #ccc;
+    transition:0.3s;
+}
+.payment{
+     width:60%;
+    padding:1rem;
+    margin:0.7rem auto;
+    display:block;
+    border-radius:12px;
+    border:2px solid #ccc;
+    transition:0.3s;
+       background:#eee;
+    border-bottom:3px solid black;
+}
+
+input:hover, select:hover, textarea:hover{
+    background:#eee;
+    border-bottom:3px solid black;
+}
+
+.success{
+    color:#2e7d32;
+    font-size:2rem;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="submission-show" style="display:none;"></h1>
+
+<form id="checkout-form" action="submission_of_order.php" method="post">
+<input type="hidden" name="cart_data" id="cart_data">
+
+<h1>Total items: <span id="item-count">0</span></h1>
+
+<div class="cart-header">
+    <span></span>
+    <span>Product</span>
+    <span>Quantity</span>
+    <span>Price</span>
+</div>
+
+<div id="cart-items"></div>
+
+<div class="summary">
+    <div><span>Subtotal</span><span id="subtotal">Rs 0</span></div>
+    <div><span>Shipping</span><span id="shipping">Rs 0</span></div>
+    <div><strong>Total</strong><strong id="total">Rs 0</strong></div>
+</div>
+
+<label for="name">Your Name</label>
+<input id="name" name="name" type="text" placeholder="Name" required>
+
+<label for="email">Your Email</label>
+<input id="email" name="email" type="email" placeholder="Email" required>
+
+<label for="number">Your Number</label>
+<input id="number" name="number" type="tel" placeholder="03XXXXXXXXX"
+pattern="03[0-9]{9}" required>
+
+<label for="city">Your City</label>
+<select id="city" name="city" required>
+    <option value="">Select City</option>
+    <option>Lahore</option>
+    <option>Karachi</option>
+    <option>Sahiwal</option>
+    <option>Quetta</option>
+    <option>Peshawar</option>
+    <option>Islamabad</option>
+</select>
+
+<label for="address">Your Address</label>
+<input id="address" name="address" type="text" placeholder="Address" required>
+<label for="address">Payment in</label>
+ <div class="payment"> Payment in cash only </div>
+<label for="instructions">Any instructions?</label>
+<textarea id="instructions" name="instructions" rows="4" placeholder="Instructions"></textarea>
+
+<button type="button" onclick="history.back()" class="btn">Go Back</button>
+<button type="submit" class="btn">Buy it</button>
+
+</form>
+
+<script>
+const cartContainer = document.getElementById("cart-items");
+const submissionShow = document.getElementById("submission-show");
+
+let rawCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* GROUP CART ITEMS */
+let cart = {};
+rawCart.forEach(item=>{
+    if(cart[item.name]){
+        cart[item.name].qty++;
+    }else{
+        cart[item.name] = {
+            price: item.price,
+            qty: 1,
+            checked: true
+        };
+    }
+});
+
+/* RENDER CART */
+function renderCart(){
+    cartContainer.innerHTML = "";
+    let subtotal = 0;
+    let itemCount = 0;
+
+    Object.keys(cart).forEach(name=>{
+        const item = cart[name];
+
+        if(item.checked){
+            subtotal += item.price * item.qty;
+        }
+
+        itemCount += item.qty;
+
+        cartContainer.innerHTML += `
+        <div class="cart-row">
+            <input type="checkbox" ${item.checked ? "checked" : ""}
+            onchange="toggleItem('${name}')">
+            <span>${name}</span>
+            <span>${item.qty}</span>
+            <span>Rs ${item.price * item.qty}</span>
+        </div>`;
+    });
+
+    document.getElementById("item-count").innerText = itemCount;
+    document.getElementById("subtotal").innerText = "Rs " + subtotal;
+
+    const shipping = subtotal > 0 && subtotal < 999 ? 300 : 0;
+    document.getElementById("shipping").innerText = "Rs " + shipping;
+    document.getElementById("total").innerText = "Rs " + (subtotal + shipping);
+
+    if(Object.keys(cart).length === 0){
+        cartContainer.innerHTML = "<p style='text-align:center;'>Your cart is empty.</p>";
+    }
+}
+
+/* TOGGLE ITEM */
+function toggleItem(name){
+    cart[name].checked = !cart[name].checked;
+    renderCart();
+}
+
+/* FORM SUBMIT */
+
+
+renderCart();
+</script>
+
+</body>
+</html>

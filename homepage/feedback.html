@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url("homepage.png") center/cover no-repeat fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .feedback-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="file"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color:rgb(125, 84, 84);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        select {
+            cursor: pointer;
+            background-color: white;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .rating-option {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-option label {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0;
+        }
+
+        .rating-option input[type="radio"]:checked + label {
+            background-color:rgb(125, 84, 84);
+            color: white;
+            border-color: rgb(125, 84, 84);
+        }
+
+        .rating-option label:hover {
+            border-color: rgb(125, 84, 84);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: rgb(125, 84, 84);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: rgb(125, 84, 84);
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 600px) {
+            .feedback-container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="feedback-container">
+        <h1>We Value Your Feedback</h1>
+        <p class="subtitle">Help us improve by sharing your thoughts</p>
+        
+       <form id="feedbackForm" action="submit_feedback.php" method="post" enctype="multipart/form-data">
+
+            <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="category">Feedback Category <span class="required">*</span></label>
+                <select id="category" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="general">General Feedback</option>
+                    <option value="product">Product/Service</option>
+                    <option value="support">Customer Support</option>
+                    <option value="website">Website Experience</option>
+                    <option value="suggestion">Suggestion</option>
+                    <option value="complaint">Complaint</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Overall Rating <span class="required">*</span></label>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" id="rating1" name="rating" value="1" required>
+                        <label for="rating1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="rating2" name="rating" value="2">
+                        <label for="rating2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="rating3" name="rating" value="3">
+                        <label for="rating3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="rating4" name="rating" value="4">
+                        <label for="rating4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="rating5" name="rating" value="5">
+                        <label for="rating5">5</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Your Feedback <span class="required">*</span></label>
+                <textarea id="comments" name="comments" required placeholder="Please share your thoughts, suggestions, or concerns..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="attachment">Attach File (Optional)</label>
+                <input type="file" id="attachment" name="attachment" accept="image/*,.pdf,.doc,.docx,.txt">
+                <small style="display: block; margin-top: 8px; color: #666; font-size: 0.85em;">
+                    Accepted formats: Images, PDF, Word documents, Text files (Max 10MB)
+                </small>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+
+   
+</body>
+</html>
