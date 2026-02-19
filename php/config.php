@@ -4,6 +4,7 @@ $host = 'localhost';
 $dbname = 'student_login_system';
 $username = 'root';  // Change this to your MySQL username
 $password = '';      // Change this to your MySQL password
+$conn = new mysqli("sqlXXX.infinityfree.com", "username", "password", "dbname");
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
