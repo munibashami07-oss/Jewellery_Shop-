@@ -221,19 +221,20 @@ a{
     background-position:center;
     transition:0.4s;
 }
+/necklaces/images/Helios_Sun_Coin_Necklace.png
 
 /* individual images */
-.img1{ background-image:url("../images/Sirens_Bounty.png"); }
-.img1:hover{ background-image:url("../images/Sirens_Bounty_hover.png"); }
+.img1{ background-image:url("../necklaces/images/Helios_Sun_Coin_Necklace.png"); }
+.img1:hover{ background-image:url("../necklaces/images/Sirens_Bounty_hover.png"); }
 
-.img2{ background-image:url("../images/Golden_Hour_Stack.png"); }
-.img2:hover{ background-image:url("../images/Golden_Hour_Stack_hover.png"); }
+.img2{ background-image:url("../necklaces/images/Golden_Hour_Stack.png"); }
+.img2:hover{ background-image:url("../necklaces/images/Golden_Hour_Stack_hover.png"); }
 
-.img4{ background-image:url("../images/Adore_Duo_Necklace.png"); }
-.img4:hover{ background-image:url("../images/Adore_Duo_Necklace_hover.png"); }
+.img4{ background-image:url("../necklaces/images/Adore_Duo_Necklace.png"); }
+.img4:hover{ background-image:url("../necklaces/images/Adore_Duo_Necklace_hover.png"); }
 
-.img3{ background-image:url("../images/Helios_Sun_Coin_Necklace.png"); }
-.img3:hover{ background-image:url("../images/Helios_Sun_Coin_Necklace_hover.png"); }
+.img3{ background-image:url("../necklaces/images/Helios_Sun_Coin_Necklace.png"); }
+.img3:hover{ background-image:url("../necklaces/images/Helios_Sun_Coin_Necklace_hover.png"); }
 
 h2,h3,h4{
     margin-top:8px;
@@ -386,15 +387,15 @@ h2,h3,h4{
 
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-    <div class="nav-left">   <a href="/index.html" class="home">Home</a>
+    <div class="nav-left">   <a href="../../index.html" class="home">Home</a>
     </div>
 
     <div class="heading">
-        <img src="/Jewellery_shop/homepage/logo.png" alt="Logo">
+        <img src="../../homepage/logo.png" alt="Logo">
     </div>
 
     <div class="nav-right">
-        <a href="/Jewellery_shop/homepage/cart.html">🛒<span id="cart-count">0</span></a>
+        <a href="../../homepage/cart.html">🛒<span id="cart-count">0</span></a>
         <!-- <input type="search" id="search" placeholder="🔎 Search"> -->
     </div>
 </nav>
@@ -499,7 +500,7 @@ function updateCartCount(){
 
 function buyNow(){
     addToCart('Helios Sun Coin Necklace',1199);
-    window.location.href = "/Jewellery_shop/necklaces/images/checkout.html";
+    window.location.href = "../necklaces/images/checkout.html";
 }
 
 updateCartCount();
