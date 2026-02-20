@@ -75,7 +75,7 @@
     width:400px;
     height:400px;
     border-radius:12px;
-    background:url("../necklaces/images/Helios_Sun_Coin_Necklace.png") center/cover no-repeat;
+    background:url("../images/Helios_Sun_Coin_Necklace.png") center/cover no-repeat;
     transition:transform .3s ease;
     position:relative;
 }
@@ -193,9 +193,9 @@
 }
 
 /* Individual images */
-.img1{ background-image:url("../necklaces/images/Sirens_Bounty.png"); }
-.img2{ background-image:url("../necklaces/images/Golden_Hour_Stack.png"); }
-.img3{ background-image:url("../necklaces/images/Adore_Duo_Necklace.png"); }
+.img1{ background-image:url("../images/Sirens_Bounty.png"); }
+.img2{ background-image:url("../images/Golden_Hour_Stack.png"); }
+.img3{ background-image:url("../images/Adore_Duo_Necklace.png"); }
 
 </style>
 </head>
@@ -290,8 +290,8 @@ let toggled=false;
 function toggleImage(){
     const img=document.querySelector('.div1_2');
     img.style.backgroundImage=toggled
-        ? 'url("../necklaces/images/Helios_Sun_Coin_Necklace.png")'
-        : 'url("../necklaces/images/Helios_Sun_Coin_Necklace_hover.png")';
+        ? 'url("/Jewellery_shop/necklaces/images/Helios_Sun_Coin_Necklace.png")'
+        : 'url("/Jewellery_shop/necklaces/images/Helios_Sun_Coin_Necklace_hover.png")';
     toggled=!toggled;
 }
 
